@@ -16,6 +16,3 @@ PARA JAVA:
 *agregar crud de farmacia (David G)
 
 ----------------------------------------------
-alter table "CES_MEDICAMENTO" add
-("MED_STOCK" NUMBER(7,0) NOT NULL)
-/ 
