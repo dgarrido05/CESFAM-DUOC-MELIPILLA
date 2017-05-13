@@ -1,6 +1,10 @@
 alter table "CES_MEDICAMENTO" add
 ("MED_RESERVADO" CHAR NOT NULL)
 
+alter table "CES_MEDICAMENTO" add
+("MED_STOCK" NUMBER(7,0) NOT NULL)
+/
+
 /***********************************/
 CREATE table "CES_LABORATORIO" (
     "LAB_ID"          NUMBER(3,0) NOT NULL,
