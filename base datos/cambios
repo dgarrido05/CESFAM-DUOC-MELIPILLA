@@ -3,7 +3,6 @@ alter table "CES_MEDICAMENTO" add
 
 alter table "CES_MEDICAMENTO" add
 ("MED_STOCK" NUMBER(7,0) NOT NULL)
-/
 
 /***********************************/
 CREATE table "CES_LABORATORIO" (
