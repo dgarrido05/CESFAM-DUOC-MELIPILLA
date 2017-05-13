@@ -7,6 +7,10 @@ alter table "CES_MEDICAMENTO" add
 alter table "CES_MEDICAMENTO" add
 ("MED_FECHA_INGRESO" DATE)
 
+alter table "CES_MEDICAMENTO" add
+("LAB_ID" NUMBER(3,0) NOT NULL)
+
+
 /***********************************/
 CREATE table "CES_LABORATORIO" (
     "LAB_ID"          NUMBER(3,0) NOT NULL,
@@ -14,4 +18,7 @@ CREATE table "CES_LABORATORIO" (
     "LAB_VIGENCIA"    CHAR(1) NOT NULL,
     constraint  "CES_LABORATORIO_PK" primary key ("LAB_ID")
 )
+
+alter table "CES_MEDICAMENTO" add constraint
+"CES_MEDICAMENTO_FK_LAB" foreign key ("LAB_ID") references "CES_LABORATORIO" ("LAB_ID")
 
