@@ -1,3 +1,11 @@
 alter table "CES_MEDICAMENTO" add
 ("MED_RESERVADO" CHAR NOT NULL)
-/  
+
+/***********************************/
+CREATE table "CES_LABORATORIO" (
+    "LAB_ID"          NUMBER(3,0) NOT NULL,
+    "LAB_DESCRIPCION" VARCHAR2(50) NOT NULL,
+    "LAB_VIGENCIA"    CHAR(1) NOT NULL,
+    constraint  "CES_LABORATORIO_PK" primary key ("LAB_ID")
+)
+
