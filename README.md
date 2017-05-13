@@ -11,7 +11,7 @@ PARA JAVA:
 
 *agregar validador de vigencia y de paciente al mostrar (que no sea usuario en CesPersona)
 
-*agregar tabla de control de 
+*agregar tabla de control de errores
 
 *agregar crud de farmacia (David G)
 
