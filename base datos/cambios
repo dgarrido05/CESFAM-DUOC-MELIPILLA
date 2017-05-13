@@ -1,0 +1,3 @@
+alter table "CES_MEDICAMENTO" add
+("MED_RESERVADO" CHAR NOT NULL)
+/  
