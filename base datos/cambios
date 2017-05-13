@@ -4,6 +4,9 @@ alter table "CES_MEDICAMENTO" add
 alter table "CES_MEDICAMENTO" add
 ("MED_STOCK" NUMBER(7,0) NOT NULL)
 
+alter table "CES_MEDICAMENTO" add
+("MED_FECHA_INGRESO" DATE)
+
 /***********************************/
 CREATE table "CES_LABORATORIO" (
     "LAB_ID"          NUMBER(3,0) NOT NULL,
