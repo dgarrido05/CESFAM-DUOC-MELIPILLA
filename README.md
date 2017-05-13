@@ -16,3 +16,5 @@ PARA JAVA:
 *agregar crud de farmacia (David G)
 
 ----------------------------------------------
+
+-TABLA AGREGADA: CES_LABORATORIO, BORRADA COLUMNA MED_LABORATORIO DE TABLA CES_MEDICAMENTOS
