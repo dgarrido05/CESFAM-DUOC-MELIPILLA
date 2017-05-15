@@ -24,3 +24,7 @@ PARA JAVA:
 ----------------------------------------------
 
 *se agregó códigos para .net
+
+----------------------------------------------
+15/05/2017 11:53
+*Agregada tabla de control de errores a la base de datos
