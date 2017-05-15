@@ -22,3 +22,36 @@ CREATE table "CES_LABORATORIO" (
 alter table "CES_MEDICAMENTO" add constraint
 "CES_MEDICAMENTO_FK_LAB" foreign key ("LAB_ID") references "CES_LABORATORIO" ("LAB_ID")
 
+/************************************/
+CREATE table "CES_ERRORES" (
+    "ERR_ID"                NUMBER(7,0) NOT NULL,
+    "ERR_NUM_ERROR"         NUMBER(7,0) NOT NULL,
+    "ERR_DESCRIPCION_ERROR" VARCHAR2(500) NOT NULL,
+    "ERR_VIGENCIA"          CHAR(1) NOT NULL,
+    constraint  "CES_ERRORES_PK" primary key ("ERR_ID")
+)
+
+CREATE sequence "CES_ERRORES_SEQ" 
+
+CREATE trigger "BI_CES_ERRORES"  
+  before insert on "CES_ERRORES"              
+  for each row 
+begin  
+  if :NEW."ERR_ID" is null then
+    select "CES_ERRORES_SEQ".nextval into :NEW."ERR_ID" from dual;
+  end if;
+end;
+
+/*************************************/
+
+
+
+
+/*************************************/
+
+
+
+
+
+/*************************************/
+
