@@ -28,3 +28,7 @@ PARA JAVA:
 ----------------------------------------------
 15/05/2017 11:53
 *Agregada tabla de control de errores a la base de datos
+
+----------------------------------------------
+
+*Se agregó index en tabla ces_usuario para el rut de persona :)
