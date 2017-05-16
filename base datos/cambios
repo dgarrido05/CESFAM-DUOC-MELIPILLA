@@ -44,8 +44,10 @@ end;
 
 /*************************************/
 
-
-
+CREATE UNIQUE INDEX ces_usuario__IDX ON ces_usuario
+  (
+    per_rut ASC
+  );
 
 /*************************************/
 
