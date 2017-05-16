@@ -9,7 +9,7 @@ PARA JAVA:
 
 *ARREGLAR INSERT DE CESUSUARIOS
 
-*agregar validador de vigencia y de paciente al mostrar (que no sea usuario en CesPersona)
+*agregar validador de vigencia y de paciente al mostrar (que no sea usuario en CesPersona)->Listo
 
 *agregar tabla de control de errores
 
