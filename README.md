@@ -32,3 +32,10 @@ PARA JAVA:
 ----------------------------------------------
 
 *Se agregó index en tabla ces_usuario para el rut de persona :)
+
+----------------------------------------------
+
+16/05/2017
+
+Ahora las tablas muestran solo usuarios vigentes y la vista de pacientes solo muestra pacientes y no usuarios en
+--> CESFAM-DUOC-MELIPILLA/java/DAO/usuarioDAO.java
