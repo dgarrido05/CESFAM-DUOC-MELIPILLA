@@ -56,17 +56,20 @@ public class usuarioDAO {
         return status;
     }
     
-    /**********************lISTAR (READ)***************************************/
-    public List<CesPersona> listarPacientes() throws Exception{  
-        return em.createNamedQuery("CesPersona.findAll").getResultList();
+    /**********************LISTAR (READ)***************************************/
+     public List<CesPersona> listarPacientes() throws Exception{
+        TypedQuery<CesPersona> query = em.createQuery("SELECT  p FROM CesPersona p WHERE p.perRut NOT IN (SELECT u.perRut.perRut FROM CesUsuario u) AND p.perVigencia = :vigencia", CesPersona.class);
+        return query.setParameter("vigencia", 's').getResultList();        
     }
     
     public List<CesUsuario> listarUsuarios() throws Exception{
-        return em.createNamedQuery("CesUsuario.findAll").getResultList();
+        TypedQuery<CesUsuario> query = em.createQuery("SELECT usu FROM CesUsuario usu WHERE usu.usuVigencia = :vigencia", CesUsuario.class);
+        return query.setParameter("vigencia", 's').getResultList();
     }
     
     public List<CesMedicamento> listarMedicamentos() throws Exception{
-        return em.createNamedQuery("CesMedi.findAll").getResultList();
+        TypedQuery<CesMedicamento> query = em.createQuery("SELECT m FROM CesMedicamento m WHERE m.usuVigencia = :vigencia", CesMedicamento.class);
+        return query.setParameter("vigencia", 's').getResultList();
     }  
     
     public List<CesTipoUsuario> listarTiposUsuario() throws Exception{
