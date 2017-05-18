@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Alias="Self" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="CES_ERRORES" EntityType="Model.Store.CES_ERRORES" store:Type="Tables" Schema="CESFAM" />
+          <EntitySet Name="CES_ESTADO_MEDICAMENTO" EntityType="Model.Store.CES_ESTADO_MEDICAMENTO" store:Type="Tables" Schema="CESFAM" />
+          <EntitySet Name="CES_LABORATORIO" EntityType="Model.Store.CES_LABORATORIO" store:Type="Tables" Schema="CESFAM" />
+          <EntitySet Name="CES_MEDICAMENTO" EntityType="Model.Store.CES_MEDICAMENTO" store:Type="Tables" Schema="CESFAM" />
+          <EntitySet Name="CES_PERSONA" EntityType="Model.Store.CES_PERSONA" store:Type="Tables" Schema="CESFAM" />
+          <EntitySet Name="CES_TIPO_ADMIN_MED" EntityType="Model.Store.CES_TIPO_ADMIN_MED" store:Type="Tables" Schema="CESFAM" />
+          <EntitySet Name="CES_TIPO_MEDICAMENTO" EntityType="Model.Store.CES_TIPO_MEDICAMENTO" store:Type="Tables" Schema="CESFAM" />
+          <EntitySet Name="CES_TIPO_USUARIO" EntityType="Model.Store.CES_TIPO_USUARIO" store:Type="Tables" Schema="CESFAM" />
+          <EntitySet Name="CES_USUARIO" EntityType="Model.Store.CES_USUARIO" store:Type="Tables" Schema="CESFAM" />
+          <AssociationSet Name="CES_MEDICAMENTO_FK_ADM" Association="Model.Store.CES_MEDICAMENTO_FK_ADM">
+            <End Role="CES_TIPO_ADMIN_MED" EntitySet="CES_TIPO_ADMIN_MED" />
+            <End Role="CES_MEDICAMENTO" EntitySet="CES_MEDICAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="CES_MEDICAMENTO_FK_ESTADO" Association="Model.Store.CES_MEDICAMENTO_FK_ESTADO">
+            <End Role="CES_ESTADO_MEDICAMENTO" EntitySet="CES_ESTADO_MEDICAMENTO" />
+            <End Role="CES_MEDICAMENTO" EntitySet="CES_MEDICAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="CES_MEDICAMENTO_FK_TIPO_MED" Association="Model.Store.CES_MEDICAMENTO_FK_TIPO_MED">
+            <End Role="CES_TIPO_MEDICAMENTO" EntitySet="CES_TIPO_MEDICAMENTO" />
+            <End Role="CES_MEDICAMENTO" EntitySet="CES_MEDICAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="CES_MEDICAMENTO_FK4" Association="Model.Store.CES_MEDICAMENTO_FK4">
+            <End Role="CES_LABORATORIO" EntitySet="CES_LABORATORIO" />
+            <End Role="CES_MEDICAMENTO" EntitySet="CES_MEDICAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="CES_USUARIO_FK_PER" Association="Model.Store.CES_USUARIO_FK_PER">
+            <End Role="CES_PERSONA" EntitySet="CES_PERSONA" />
+            <End Role="CES_USUARIO" EntitySet="CES_USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="CES_USUARIO_FK_TIPO_USU" Association="Model.Store.CES_USUARIO_FK_TIPO_USU">
+            <End Role="CES_TIPO_USUARIO" EntitySet="CES_TIPO_USUARIO" />
+            <End Role="CES_USUARIO" EntitySet="CES_USUARIO" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CES_ERRORES">
+          <Key>
+            <PropertyRef Name="ERR_ID" />
+          </Key>
+          <Property Name="ERR_ID" Type="number" Nullable="false" Precision="7" />
+          <Property Name="ERR_NUM_ERROR" Type="number" Nullable="false" Precision="7" />
+          <Property Name="ERR_DESCRIPCION_ERROR" Type="varchar2" Nullable="false" MaxLength="500" />
+          <Property Name="ERR_VIGENCIA" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="CES_ESTADO_MEDICAMENTO">
+          <Key>
+            <PropertyRef Name="EST_ID" />
+          </Key>
+          <Property Name="EST_ID" Type="number" Nullable="false" Precision="2" />
+          <Property Name="EST_DESCRIPCION" Type="varchar2" Nullable="false" MaxLength="25" />
+          <Property Name="EST_VIGENCIA" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="CES_LABORATORIO">
+          <Key>
+            <PropertyRef Name="LAB_ID" />
+          </Key>
+          <Property Name="LAB_ID" Type="number" Nullable="false" Precision="3" />
+          <Property Name="LAB_DESCRIPCION" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="LAB_VIGENCIA" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="CES_MEDICAMENTO">
+          <Key>
+            <PropertyRef Name="MED_ID" />
+          </Key>
+          <Property Name="MED_ID" Type="number" Nullable="false" Precision="8" />
+          <Property Name="MED_NOMBRE" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="MED_FECHA_ELABORACION" Type="date" Nullable="false" />
+          <Property Name="MED_FECHA_VENCIMIENTO" Type="date" Nullable="false" />
+          <Property Name="MED_COMENTARIOS" Type="varchar2" MaxLength="200" />
+          <Property Name="MED_VIGENCIA" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="EST_ID" Type="number" Nullable="false" />
+          <Property Name="TIPO_MED_ID" Type="number" Nullable="false" />
+          <Property Name="TIPO_ADM_ID" Type="number" Nullable="false" />
+          <Property Name="MED_STOCK" Type="number" Nullable="false" Precision="7" />
+          <Property Name="MED_RESERVADO" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="MED_FECHA_INGRESO" Type="date" />
+          <Property Name="LAB_ID" Type="number" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="CES_PERSONA">
+          <Key>
+            <PropertyRef Name="PER_RUT" />
+          </Key>
+          <Property Name="PER_RUT" Type="number" Nullable="false" Precision="8" />
+          <Property Name="PER_DV" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="PER_NOMBRES" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="PER_APELLIDO_PATERNO" Type="varchar2" Nullable="false" MaxLength="30" />
+          <Property Name="PER_APELLIDO_MATERNO" Type="varchar2" Nullable="false" MaxLength="30" />
+          <Property Name="PER_NOMBRE_COMPLETO" Type="varchar2" MaxLength="110" />
+          <Property Name="PER_SEXO" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="PER_FECHA_NACIMIENTO" Type="date" Nullable="false" />
+          <Property Name="PER_FECHA_REGISTRO" Type="date" />
+          <Property Name="PER_TELEFONO" Type="number" Nullable="false" Precision="8" />
+          <Property Name="PER_EMAIL" Type="varchar2" MaxLength="100" />
+          <Property Name="PER_VIGENCIA" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="CES_TIPO_ADMIN_MED">
+          <Key>
+            <PropertyRef Name="TIPO_ADM_ID" />
+          </Key>
+          <Property Name="TIPO_ADM_ID" Type="number" Nullable="false" Precision="2" />
+          <Property Name="TIPO_ADM_DESCRIPCION" Type="varchar2" Nullable="false" MaxLength="25" />
+          <Property Name="TIPO_ADM_VIGENCIA" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="CES_TIPO_MEDICAMENTO">
+          <Key>
+            <PropertyRef Name="TIPO_MED_ID" />
+          </Key>
+          <Property Name="TIPO_MED_ID" Type="number" Nullable="false" Precision="2" />
+          <Property Name="TIPO_MED_DESCRIPCION" Type="varchar2" Nullable="false" MaxLength="25" />
+          <Property Name="TIPO_MED_VIGENCIA" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="CES_TIPO_USUARIO">
+          <Key>
+            <PropertyRef Name="TIPO_USUARIO_ID" />
+          </Key>
+          <Property Name="TIPO_USUARIO_ID" Type="number" Nullable="false" Precision="2" />
+          <Property Name="TIPO_USUARIO_DESCRIPCION" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="TIPO_USUARIO_VIGENCIA" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="CES_USUARIO">
+          <Key>
+            <PropertyRef Name="USU_ID" />
+          </Key>
+          <Property Name="USU_ID" Type="number" Nullable="false" Precision="4" />
+          <Property Name="USU_NOMBRE_USUARIO" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="USU_CLAVE" Type="varchar2" Nullable="false" MaxLength="200" />
+          <Property Name="USU_VIGENCIA" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="PER_RUT" Type="number" Nullable="false" Precision="8" />
+          <Property Name="TIPO_USUARIO_ID" Type="number" Nullable="false" />
+        </EntityType>
+        <Association Name="CES_MEDICAMENTO_FK_ADM">
+          <End Role="CES_TIPO_ADMIN_MED" Type="Model.Store.CES_TIPO_ADMIN_MED" Multiplicity="1" />
+          <End Role="CES_MEDICAMENTO" Type="Model.Store.CES_MEDICAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CES_TIPO_ADMIN_MED">
+              <PropertyRef Name="TIPO_ADM_ID" />
+            </Principal>
+            <Dependent Role="CES_MEDICAMENTO">
+              <PropertyRef Name="TIPO_ADM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CES_MEDICAMENTO_FK_ESTADO">
+          <End Role="CES_ESTADO_MEDICAMENTO" Type="Model.Store.CES_ESTADO_MEDICAMENTO" Multiplicity="1" />
+          <End Role="CES_MEDICAMENTO" Type="Model.Store.CES_MEDICAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CES_ESTADO_MEDICAMENTO">
+              <PropertyRef Name="EST_ID" />
+            </Principal>
+            <Dependent Role="CES_MEDICAMENTO">
+              <PropertyRef Name="EST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CES_MEDICAMENTO_FK_TIPO_MED">
+          <End Role="CES_TIPO_MEDICAMENTO" Type="Model.Store.CES_TIPO_MEDICAMENTO" Multiplicity="1" />
+          <End Role="CES_MEDICAMENTO" Type="Model.Store.CES_MEDICAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CES_TIPO_MEDICAMENTO">
+              <PropertyRef Name="TIPO_MED_ID" />
+            </Principal>
+            <Dependent Role="CES_MEDICAMENTO">
+              <PropertyRef Name="TIPO_MED_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CES_MEDICAMENTO_FK4">
+          <End Role="CES_LABORATORIO" Type="Model.Store.CES_LABORATORIO" Multiplicity="1" />
+          <End Role="CES_MEDICAMENTO" Type="Model.Store.CES_MEDICAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CES_LABORATORIO">
+              <PropertyRef Name="LAB_ID" />
+            </Principal>
+            <Dependent Role="CES_MEDICAMENTO">
+              <PropertyRef Name="LAB_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CES_USUARIO_FK_PER">
+          <End Role="CES_PERSONA" Type="Model.Store.CES_PERSONA" Multiplicity="1" />
+          <End Role="CES_USUARIO" Type="Model.Store.CES_USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CES_PERSONA">
+              <PropertyRef Name="PER_RUT" />
+            </Principal>
+            <Dependent Role="CES_USUARIO">
+              <PropertyRef Name="PER_RUT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CES_USUARIO_FK_TIPO_USU">
+          <End Role="CES_TIPO_USUARIO" Type="Model.Store.CES_TIPO_USUARIO" Multiplicity="1" />
+          <End Role="CES_USUARIO" Type="Model.Store.CES_USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CES_TIPO_USUARIO">
+              <PropertyRef Name="TIPO_USUARIO_ID" />
+            </Principal>
+            <Dependent Role="CES_USUARIO">
+              <PropertyRef Name="TIPO_USUARIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="farmaciaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CES_ERRORES" EntityType="Model.CES_ERRORES" />
+          <EntitySet Name="CES_ESTADO_MEDICAMENTO" EntityType="Model.CES_ESTADO_MEDICAMENTO" />
+          <EntitySet Name="CES_LABORATORIO" EntityType="Model.CES_LABORATORIO" />
+          <EntitySet Name="CES_MEDICAMENTO" EntityType="Model.CES_MEDICAMENTO" />
+          <EntitySet Name="CES_PERSONA" EntityType="Model.CES_PERSONA" />
+          <EntitySet Name="CES_TIPO_ADMIN_MED" EntityType="Model.CES_TIPO_ADMIN_MED" />
+          <EntitySet Name="CES_TIPO_MEDICAMENTO" EntityType="Model.CES_TIPO_MEDICAMENTO" />
+          <EntitySet Name="CES_TIPO_USUARIO" EntityType="Model.CES_TIPO_USUARIO" />
+          <EntitySet Name="CES_USUARIO" EntityType="Model.CES_USUARIO" />
+          <AssociationSet Name="CES_MEDICAMENTO_FK_ESTADO" Association="Model.CES_MEDICAMENTO_FK_ESTADO">
+            <End Role="CES_ESTADO_MEDICAMENTO" EntitySet="CES_ESTADO_MEDICAMENTO" />
+            <End Role="CES_MEDICAMENTO" EntitySet="CES_MEDICAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="CES_MEDICAMENTO_FK4" Association="Model.CES_MEDICAMENTO_FK4">
+            <End Role="CES_LABORATORIO" EntitySet="CES_LABORATORIO" />
+            <End Role="CES_MEDICAMENTO" EntitySet="CES_MEDICAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="CES_MEDICAMENTO_FK_ADM" Association="Model.CES_MEDICAMENTO_FK_ADM">
+            <End Role="CES_TIPO_ADMIN_MED" EntitySet="CES_TIPO_ADMIN_MED" />
+            <End Role="CES_MEDICAMENTO" EntitySet="CES_MEDICAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="CES_MEDICAMENTO_FK_TIPO_MED" Association="Model.CES_MEDICAMENTO_FK_TIPO_MED">
+            <End Role="CES_TIPO_MEDICAMENTO" EntitySet="CES_TIPO_MEDICAMENTO" />
+            <End Role="CES_MEDICAMENTO" EntitySet="CES_MEDICAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="CES_USUARIO_FK_PER" Association="Model.CES_USUARIO_FK_PER">
+            <End Role="CES_PERSONA" EntitySet="CES_PERSONA" />
+            <End Role="CES_USUARIO" EntitySet="CES_USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="CES_USUARIO_FK_TIPO_USU" Association="Model.CES_USUARIO_FK_TIPO_USU">
+            <End Role="CES_TIPO_USUARIO" EntitySet="CES_TIPO_USUARIO" />
+            <End Role="CES_USUARIO" EntitySet="CES_USUARIO" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CES_ERRORES">
+          <Key>
+            <PropertyRef Name="ERR_ID" />
+          </Key>
+          <Property Name="ERR_ID" Type="Int32" Nullable="false" />
+          <Property Name="ERR_NUM_ERROR" Type="Int32" Nullable="false" />
+          <Property Name="ERR_DESCRIPCION_ERROR" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="ERR_VIGENCIA" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+        </EntityType>
+        <EntityType Name="CES_ESTADO_MEDICAMENTO">
+          <Key>
+            <PropertyRef Name="EST_ID" />
+          </Key>
+          <Property Name="EST_ID" Type="Int16" Nullable="false" />
+          <Property Name="EST_DESCRIPCION" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="EST_VIGENCIA" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <NavigationProperty Name="CES_MEDICAMENTO" Relationship="Model.CES_MEDICAMENTO_FK_ESTADO" FromRole="CES_ESTADO_MEDICAMENTO" ToRole="CES_MEDICAMENTO" />
+        </EntityType>
+        <EntityType Name="CES_LABORATORIO">
+          <Key>
+            <PropertyRef Name="LAB_ID" />
+          </Key>
+          <Property Name="LAB_ID" Type="Int16" Nullable="false" />
+          <Property Name="LAB_DESCRIPCION" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LAB_VIGENCIA" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <NavigationProperty Name="CES_MEDICAMENTO" Relationship="Model.CES_MEDICAMENTO_FK4" FromRole="CES_LABORATORIO" ToRole="CES_MEDICAMENTO" />
+        </EntityType>
+        <EntityType Name="CES_MEDICAMENTO">
+          <Key>
+            <PropertyRef Name="MED_ID" />
+          </Key>
+          <Property Name="MED_ID" Type="Int32" Nullable="false" />
+          <Property Name="MED_NOMBRE" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="MED_FECHA_ELABORACION" Type="DateTime" Nullable="false" />
+          <Property Name="MED_FECHA_VENCIMIENTO" Type="DateTime" Nullable="false" />
+          <Property Name="MED_COMENTARIOS" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="MED_VIGENCIA" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="EST_ID" Type="Int16" Nullable="false" />
+          <Property Name="TIPO_MED_ID" Type="Int16" Nullable="false" />
+          <Property Name="TIPO_ADM_ID" Type="Int16" Nullable="false" />
+          <Property Name="MED_STOCK" Type="Int32" Nullable="false" />
+          <Property Name="MED_RESERVADO" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="MED_FECHA_INGRESO" Type="DateTime" />
+          <Property Name="LAB_ID" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="CES_ESTADO_MEDICAMENTO" Relationship="Model.CES_MEDICAMENTO_FK_ESTADO" FromRole="CES_MEDICAMENTO" ToRole="CES_ESTADO_MEDICAMENTO" />
+          <NavigationProperty Name="CES_LABORATORIO" Relationship="Model.CES_MEDICAMENTO_FK4" FromRole="CES_MEDICAMENTO" ToRole="CES_LABORATORIO" />
+          <NavigationProperty Name="CES_TIPO_ADMIN_MED" Relationship="Model.CES_MEDICAMENTO_FK_ADM" FromRole="CES_MEDICAMENTO" ToRole="CES_TIPO_ADMIN_MED" />
+          <NavigationProperty Name="CES_TIPO_MEDICAMENTO" Relationship="Model.CES_MEDICAMENTO_FK_TIPO_MED" FromRole="CES_MEDICAMENTO" ToRole="CES_TIPO_MEDICAMENTO" />
+        </EntityType>
+        <EntityType Name="CES_PERSONA">
+          <Key>
+            <PropertyRef Name="PER_RUT" />
+          </Key>
+          <Property Name="PER_RUT" Type="Int32" Nullable="false" />
+          <Property Name="PER_DV" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="PER_NOMBRES" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PER_APELLIDO_PATERNO" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="PER_APELLIDO_MATERNO" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="PER_NOMBRE_COMPLETO" Type="String" MaxLength="110" Unicode="false" FixedLength="false" />
+          <Property Name="PER_SEXO" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="PER_FECHA_NACIMIENTO" Type="DateTime" Nullable="false" />
+          <Property Name="PER_FECHA_REGISTRO" Type="DateTime" />
+          <Property Name="PER_TELEFONO" Type="Int32" Nullable="false" />
+          <Property Name="PER_EMAIL" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="PER_VIGENCIA" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <NavigationProperty Name="CES_USUARIO" Relationship="Model.CES_USUARIO_FK_PER" FromRole="CES_PERSONA" ToRole="CES_USUARIO" />
+        </EntityType>
+        <EntityType Name="CES_TIPO_ADMIN_MED">
+          <Key>
+            <PropertyRef Name="TIPO_ADM_ID" />
+          </Key>
+          <Property Name="TIPO_ADM_ID" Type="Int16" Nullable="false" />
+          <Property Name="TIPO_ADM_DESCRIPCION" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="TIPO_ADM_VIGENCIA" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <NavigationProperty Name="CES_MEDICAMENTO" Relationship="Model.CES_MEDICAMENTO_FK_ADM" FromRole="CES_TIPO_ADMIN_MED" ToRole="CES_MEDICAMENTO" />
+        </EntityType>
+        <EntityType Name="CES_TIPO_MEDICAMENTO">
+          <Key>
+            <PropertyRef Name="TIPO_MED_ID" />
+          </Key>
+          <Property Name="TIPO_MED_ID" Type="Int16" Nullable="false" />
+          <Property Name="TIPO_MED_DESCRIPCION" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="TIPO_MED_VIGENCIA" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <NavigationProperty Name="CES_MEDICAMENTO" Relationship="Model.CES_MEDICAMENTO_FK_TIPO_MED" FromRole="CES_TIPO_MEDICAMENTO" ToRole="CES_MEDICAMENTO" />
+        </EntityType>
+        <EntityType Name="CES_TIPO_USUARIO">
+          <Key>
+            <PropertyRef Name="TIPO_USUARIO_ID" />
+          </Key>
+          <Property Name="TIPO_USUARIO_ID" Type="Int16" Nullable="false" />
+          <Property Name="TIPO_USUARIO_DESCRIPCION" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TIPO_USUARIO_VIGENCIA" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <NavigationProperty Name="CES_USUARIO" Relationship="Model.CES_USUARIO_FK_TIPO_USU" FromRole="CES_TIPO_USUARIO" ToRole="CES_USUARIO" />
+        </EntityType>
+        <EntityType Name="CES_USUARIO">
+          <Key>
+            <PropertyRef Name="USU_ID" />
+          </Key>
+          <Property Name="USU_ID" Type="Int16" Nullable="false" />
+          <Property Name="USU_NOMBRE_USUARIO" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="USU_CLAVE" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="USU_VIGENCIA" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="PER_RUT" Type="Int32" Nullable="false" />
+          <Property Name="TIPO_USUARIO_ID" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="CES_PERSONA" Relationship="Model.CES_USUARIO_FK_PER" FromRole="CES_USUARIO" ToRole="CES_PERSONA" />
+          <NavigationProperty Name="CES_TIPO_USUARIO" Relationship="Model.CES_USUARIO_FK_TIPO_USU" FromRole="CES_USUARIO" ToRole="CES_TIPO_USUARIO" />
+        </EntityType>
+        <Association Name="CES_MEDICAMENTO_FK_ESTADO">
+          <End Role="CES_ESTADO_MEDICAMENTO" Type="Model.CES_ESTADO_MEDICAMENTO" Multiplicity="1" />
+          <End Role="CES_MEDICAMENTO" Type="Model.CES_MEDICAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CES_ESTADO_MEDICAMENTO">
+              <PropertyRef Name="EST_ID" />
+            </Principal>
+            <Dependent Role="CES_MEDICAMENTO">
+              <PropertyRef Name="EST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CES_MEDICAMENTO_FK4">
+          <End Role="CES_LABORATORIO" Type="Model.CES_LABORATORIO" Multiplicity="1" />
+          <End Role="CES_MEDICAMENTO" Type="Model.CES_MEDICAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CES_LABORATORIO">
+              <PropertyRef Name="LAB_ID" />
+            </Principal>
+            <Dependent Role="CES_MEDICAMENTO">
+              <PropertyRef Name="LAB_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CES_MEDICAMENTO_FK_ADM">
+          <End Role="CES_TIPO_ADMIN_MED" Type="Model.CES_TIPO_ADMIN_MED" Multiplicity="1" />
+          <End Role="CES_MEDICAMENTO" Type="Model.CES_MEDICAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CES_TIPO_ADMIN_MED">
+              <PropertyRef Name="TIPO_ADM_ID" />
+            </Principal>
+            <Dependent Role="CES_MEDICAMENTO">
+              <PropertyRef Name="TIPO_ADM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CES_MEDICAMENTO_FK_TIPO_MED">
+          <End Role="CES_TIPO_MEDICAMENTO" Type="Model.CES_TIPO_MEDICAMENTO" Multiplicity="1" />
+          <End Role="CES_MEDICAMENTO" Type="Model.CES_MEDICAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CES_TIPO_MEDICAMENTO">
+              <PropertyRef Name="TIPO_MED_ID" />
+            </Principal>
+            <Dependent Role="CES_MEDICAMENTO">
+              <PropertyRef Name="TIPO_MED_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CES_USUARIO_FK_PER">
+          <End Role="CES_PERSONA" Type="Model.CES_PERSONA" Multiplicity="1" />
+          <End Role="CES_USUARIO" Type="Model.CES_USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CES_PERSONA">
+              <PropertyRef Name="PER_RUT" />
+            </Principal>
+            <Dependent Role="CES_USUARIO">
+              <PropertyRef Name="PER_RUT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CES_USUARIO_FK_TIPO_USU">
+          <End Role="CES_TIPO_USUARIO" Type="Model.CES_TIPO_USUARIO" Multiplicity="1" />
+          <End Role="CES_USUARIO" Type="Model.CES_USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CES_TIPO_USUARIO">
+              <PropertyRef Name="TIPO_USUARIO_ID" />
+            </Principal>
+            <Dependent Role="CES_USUARIO">
+              <PropertyRef Name="TIPO_USUARIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="farmaciaEntities">
+          <EntitySetMapping Name="CES_ERRORES">
+            <EntityTypeMapping TypeName="Model.CES_ERRORES">
+              <MappingFragment StoreEntitySet="CES_ERRORES">
+                <ScalarProperty Name="ERR_ID" ColumnName="ERR_ID" />
+                <ScalarProperty Name="ERR_NUM_ERROR" ColumnName="ERR_NUM_ERROR" />
+                <ScalarProperty Name="ERR_DESCRIPCION_ERROR" ColumnName="ERR_DESCRIPCION_ERROR" />
+                <ScalarProperty Name="ERR_VIGENCIA" ColumnName="ERR_VIGENCIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CES_ESTADO_MEDICAMENTO">
+            <EntityTypeMapping TypeName="Model.CES_ESTADO_MEDICAMENTO">
+              <MappingFragment StoreEntitySet="CES_ESTADO_MEDICAMENTO">
+                <ScalarProperty Name="EST_ID" ColumnName="EST_ID" />
+                <ScalarProperty Name="EST_DESCRIPCION" ColumnName="EST_DESCRIPCION" />
+                <ScalarProperty Name="EST_VIGENCIA" ColumnName="EST_VIGENCIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CES_LABORATORIO">
+            <EntityTypeMapping TypeName="Model.CES_LABORATORIO">
+              <MappingFragment StoreEntitySet="CES_LABORATORIO">
+                <ScalarProperty Name="LAB_ID" ColumnName="LAB_ID" />
+                <ScalarProperty Name="LAB_DESCRIPCION" ColumnName="LAB_DESCRIPCION" />
+                <ScalarProperty Name="LAB_VIGENCIA" ColumnName="LAB_VIGENCIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CES_MEDICAMENTO">
+            <EntityTypeMapping TypeName="Model.CES_MEDICAMENTO">
+              <MappingFragment StoreEntitySet="CES_MEDICAMENTO">
+                <ScalarProperty Name="MED_ID" ColumnName="MED_ID" />
+                <ScalarProperty Name="MED_NOMBRE" ColumnName="MED_NOMBRE" />
+                <ScalarProperty Name="MED_FECHA_ELABORACION" ColumnName="MED_FECHA_ELABORACION" />
+                <ScalarProperty Name="MED_FECHA_VENCIMIENTO" ColumnName="MED_FECHA_VENCIMIENTO" />
+                <ScalarProperty Name="MED_COMENTARIOS" ColumnName="MED_COMENTARIOS" />
+                <ScalarProperty Name="MED_VIGENCIA" ColumnName="MED_VIGENCIA" />
+                <ScalarProperty Name="EST_ID" ColumnName="EST_ID" />
+                <ScalarProperty Name="TIPO_MED_ID" ColumnName="TIPO_MED_ID" />
+                <ScalarProperty Name="TIPO_ADM_ID" ColumnName="TIPO_ADM_ID" />
+                <ScalarProperty Name="MED_STOCK" ColumnName="MED_STOCK" />
+                <ScalarProperty Name="MED_RESERVADO" ColumnName="MED_RESERVADO" />
+                <ScalarProperty Name="MED_FECHA_INGRESO" ColumnName="MED_FECHA_INGRESO" />
+                <ScalarProperty Name="LAB_ID" ColumnName="LAB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CES_PERSONA">
+            <EntityTypeMapping TypeName="Model.CES_PERSONA">
+              <MappingFragment StoreEntitySet="CES_PERSONA">
+                <ScalarProperty Name="PER_RUT" ColumnName="PER_RUT" />
+                <ScalarProperty Name="PER_DV" ColumnName="PER_DV" />
+                <ScalarProperty Name="PER_NOMBRES" ColumnName="PER_NOMBRES" />
+                <ScalarProperty Name="PER_APELLIDO_PATERNO" ColumnName="PER_APELLIDO_PATERNO" />
+                <ScalarProperty Name="PER_APELLIDO_MATERNO" ColumnName="PER_APELLIDO_MATERNO" />
+                <ScalarProperty Name="PER_NOMBRE_COMPLETO" ColumnName="PER_NOMBRE_COMPLETO" />
+                <ScalarProperty Name="PER_SEXO" ColumnName="PER_SEXO" />
+                <ScalarProperty Name="PER_FECHA_NACIMIENTO" ColumnName="PER_FECHA_NACIMIENTO" />
+                <ScalarProperty Name="PER_FECHA_REGISTRO" ColumnName="PER_FECHA_REGISTRO" />
+                <ScalarProperty Name="PER_TELEFONO" ColumnName="PER_TELEFONO" />
+                <ScalarProperty Name="PER_EMAIL" ColumnName="PER_EMAIL" />
+                <ScalarProperty Name="PER_VIGENCIA" ColumnName="PER_VIGENCIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CES_TIPO_ADMIN_MED">
+            <EntityTypeMapping TypeName="Model.CES_TIPO_ADMIN_MED">
+              <MappingFragment StoreEntitySet="CES_TIPO_ADMIN_MED">
+                <ScalarProperty Name="TIPO_ADM_ID" ColumnName="TIPO_ADM_ID" />
+                <ScalarProperty Name="TIPO_ADM_DESCRIPCION" ColumnName="TIPO_ADM_DESCRIPCION" />
+                <ScalarProperty Name="TIPO_ADM_VIGENCIA" ColumnName="TIPO_ADM_VIGENCIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CES_TIPO_MEDICAMENTO">
+            <EntityTypeMapping TypeName="Model.CES_TIPO_MEDICAMENTO">
+              <MappingFragment StoreEntitySet="CES_TIPO_MEDICAMENTO">
+                <ScalarProperty Name="TIPO_MED_ID" ColumnName="TIPO_MED_ID" />
+                <ScalarProperty Name="TIPO_MED_DESCRIPCION" ColumnName="TIPO_MED_DESCRIPCION" />
+                <ScalarProperty Name="TIPO_MED_VIGENCIA" ColumnName="TIPO_MED_VIGENCIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CES_TIPO_USUARIO">
+            <EntityTypeMapping TypeName="Model.CES_TIPO_USUARIO">
+              <MappingFragment StoreEntitySet="CES_TIPO_USUARIO">
+                <ScalarProperty Name="TIPO_USUARIO_ID" ColumnName="TIPO_USUARIO_ID" />
+                <ScalarProperty Name="TIPO_USUARIO_DESCRIPCION" ColumnName="TIPO_USUARIO_DESCRIPCION" />
+                <ScalarProperty Name="TIPO_USUARIO_VIGENCIA" ColumnName="TIPO_USUARIO_VIGENCIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CES_USUARIO">
+            <EntityTypeMapping TypeName="Model.CES_USUARIO">
+              <MappingFragment StoreEntitySet="CES_USUARIO">
+                <ScalarProperty Name="USU_ID" ColumnName="USU_ID" />
+                <ScalarProperty Name="USU_NOMBRE_USUARIO" ColumnName="USU_NOMBRE_USUARIO" />
+                <ScalarProperty Name="USU_CLAVE" ColumnName="USU_CLAVE" />
+                <ScalarProperty Name="USU_VIGENCIA" ColumnName="USU_VIGENCIA" />
+                <ScalarProperty Name="PER_RUT" ColumnName="PER_RUT" />
+                <ScalarProperty Name="TIPO_USUARIO_ID" ColumnName="TIPO_USUARIO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="modeloFarmacia">
+        <EntityTypeShape EntityType="Model.CES_ERRORES" Width="1.5" PointX="7.25" PointY="8.625" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CES_ESTADO_MEDICAMENTO" Width="1.75" PointX="0.5" PointY="1" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CES_LABORATORIO" Width="2.5" PointX="0.5" PointY="5.125" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CES_MEDICAMENTO" Width="2.375" PointX="3" PointY="1" Height="4.2879036458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CES_PERSONA" Width="2.125" PointX="5.75" PointY="1" Height="3.5186979166666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CES_TIPO_ADMIN_MED" Width="2.375" PointX="2" PointY="7.25" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CES_TIPO_MEDICAMENTO" Width="2.375" PointX="4.75" PointY="6.375" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CES_TIPO_USUARIO" Width="1.5" PointX="9.375" PointY="5" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CES_USUARIO" Width="2.75" PointX="9.25" PointY="1" Height="2.5571907552083317" IsExpanded="true" />
+        <AssociationConnector Association="Model.CES_MEDICAMENTO_FK_ESTADO" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="1.8939925130208337" />
+          <ConnectorPoint PointX="3" PointY="1.8939925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.CES_MEDICAMENTO_FK4" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.7499995" PointY="5.125" />
+          <ConnectorPoint PointX="1.7499995" PointY="3.1439518229166654" />
+          <ConnectorPoint PointX="3" PointY="3.1439518229166654" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.CES_MEDICAMENTO_FK_ADM" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.71875" PointY="7.25" />
+          <ConnectorPoint PointX="3.71875" PointY="5.2879036458333317" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.CES_MEDICAMENTO_FK_TIPO_MED" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.0625" PointY="6.375" />
+          <ConnectorPoint PointX="5.0625" PointY="5.2879036458333317" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.CES_USUARIO_FK_PER" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.875" PointY="2.2785953776041659" />
+          <ConnectorPoint PointX="9.25" PointY="2.2785953776041659" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.CES_USUARIO_FK_TIPO_USU" ManuallyRouted="false">
+          <ConnectorPoint PointX="10.125" PointY="5" />
+          <ConnectorPoint PointX="10.125" PointY="3.5571907552083317" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="farmaciaEntities">
+    <EntitySetMapping Name="CES_ERRORES">
+      <EntityTypeMapping TypeName="Model.CES_ERRORES">
+        <MappingFragment StoreEntitySet="CES_ERRORES">
+          <ScalarProperty Name="ERR_ID" ColumnName="ERR_ID" />
+          <ScalarProperty Name="ERR_NUM_ERROR" ColumnName="ERR_NUM_ERROR" />
+          <ScalarProperty Name="ERR_DESCRIPCION_ERROR" ColumnName="ERR_DESCRIPCION_ERROR" />
+          <ScalarProperty Name="ERR_VIGENCIA" ColumnName="ERR_VIGENCIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CES_ESTADO_MEDICAMENTO">
+      <EntityTypeMapping TypeName="Model.CES_ESTADO_MEDICAMENTO">
+        <MappingFragment StoreEntitySet="CES_ESTADO_MEDICAMENTO">
+          <ScalarProperty Name="EST_ID" ColumnName="EST_ID" />
+          <ScalarProperty Name="EST_DESCRIPCION" ColumnName="EST_DESCRIPCION" />
+          <ScalarProperty Name="EST_VIGENCIA" ColumnName="EST_VIGENCIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CES_LABORATORIO">
+      <EntityTypeMapping TypeName="Model.CES_LABORATORIO">
+        <MappingFragment StoreEntitySet="CES_LABORATORIO">
+          <ScalarProperty Name="LAB_ID" ColumnName="LAB_ID" />
+          <ScalarProperty Name="LAB_DESCRIPCION" ColumnName="LAB_DESCRIPCION" />
+          <ScalarProperty Name="LAB_VIGENCIA" ColumnName="LAB_VIGENCIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CES_MEDICAMENTO">
+      <EntityTypeMapping TypeName="Model.CES_MEDICAMENTO">
+        <MappingFragment StoreEntitySet="CES_MEDICAMENTO">
+          <ScalarProperty Name="MED_ID" ColumnName="MED_ID" />
+          <ScalarProperty Name="MED_NOMBRE" ColumnName="MED_NOMBRE" />
+          <ScalarProperty Name="MED_FECHA_ELABORACION" ColumnName="MED_FECHA_ELABORACION" />
+          <ScalarProperty Name="MED_FECHA_VENCIMIENTO" ColumnName="MED_FECHA_VENCIMIENTO" />
+          <ScalarProperty Name="MED_COMENTARIOS" ColumnName="MED_COMENTARIOS" />
+          <ScalarProperty Name="MED_VIGENCIA" ColumnName="MED_VIGENCIA" />
+          <ScalarProperty Name="EST_ID" ColumnName="EST_ID" />
+          <ScalarProperty Name="TIPO_MED_ID" ColumnName="TIPO_MED_ID" />
+          <ScalarProperty Name="TIPO_ADM_ID" ColumnName="TIPO_ADM_ID" />
+          <ScalarProperty Name="MED_STOCK" ColumnName="MED_STOCK" />
+          <ScalarProperty Name="MED_RESERVADO" ColumnName="MED_RESERVADO" />
+          <ScalarProperty Name="MED_FECHA_INGRESO" ColumnName="MED_FECHA_INGRESO" />
+          <ScalarProperty Name="LAB_ID" ColumnName="LAB_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CES_PERSONA">
+      <EntityTypeMapping TypeName="Model.CES_PERSONA">
+        <MappingFragment StoreEntitySet="CES_PERSONA">
+          <ScalarProperty Name="PER_RUT" ColumnName="PER_RUT" />
+          <ScalarProperty Name="PER_DV" ColumnName="PER_DV" />
+          <ScalarProperty Name="PER_NOMBRES" ColumnName="PER_NOMBRES" />
+          <ScalarProperty Name="PER_APELLIDO_PATERNO" ColumnName="PER_APELLIDO_PATERNO" />
+          <ScalarProperty Name="PER_APELLIDO_MATERNO" ColumnName="PER_APELLIDO_MATERNO" />
+          <ScalarProperty Name="PER_NOMBRE_COMPLETO" ColumnName="PER_NOMBRE_COMPLETO" />
+          <ScalarProperty Name="PER_SEXO" ColumnName="PER_SEXO" />
+          <ScalarProperty Name="PER_FECHA_NACIMIENTO" ColumnName="PER_FECHA_NACIMIENTO" />
+          <ScalarProperty Name="PER_FECHA_REGISTRO" ColumnName="PER_FECHA_REGISTRO" />
+          <ScalarProperty Name="PER_TELEFONO" ColumnName="PER_TELEFONO" />
+          <ScalarProperty Name="PER_EMAIL" ColumnName="PER_EMAIL" />
+          <ScalarProperty Name="PER_VIGENCIA" ColumnName="PER_VIGENCIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CES_TIPO_ADMIN_MED">
+      <EntityTypeMapping TypeName="Model.CES_TIPO_ADMIN_MED">
+        <MappingFragment StoreEntitySet="CES_TIPO_ADMIN_MED">
+          <ScalarProperty Name="TIPO_ADM_ID" ColumnName="TIPO_ADM_ID" />
+          <ScalarProperty Name="TIPO_ADM_DESCRIPCION" ColumnName="TIPO_ADM_DESCRIPCION" />
+          <ScalarProperty Name="TIPO_ADM_VIGENCIA" ColumnName="TIPO_ADM_VIGENCIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CES_TIPO_MEDICAMENTO">
+      <EntityTypeMapping TypeName="Model.CES_TIPO_MEDICAMENTO">
+        <MappingFragment StoreEntitySet="CES_TIPO_MEDICAMENTO">
+          <ScalarProperty Name="TIPO_MED_ID" ColumnName="TIPO_MED_ID" />
+          <ScalarProperty Name="TIPO_MED_DESCRIPCION" ColumnName="TIPO_MED_DESCRIPCION" />
+          <ScalarProperty Name="TIPO_MED_VIGENCIA" ColumnName="TIPO_MED_VIGENCIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CES_TIPO_USUARIO">
+      <EntityTypeMapping TypeName="Model.CES_TIPO_USUARIO">
+        <MappingFragment StoreEntitySet="CES_TIPO_USUARIO">
+          <ScalarProperty Name="TIPO_USUARIO_ID" ColumnName="TIPO_USUARIO_ID" />
+          <ScalarProperty Name="TIPO_USUARIO_DESCRIPCION" ColumnName="TIPO_USUARIO_DESCRIPCION" />
+          <ScalarProperty Name="TIPO_USUARIO_VIGENCIA" ColumnName="TIPO_USUARIO_VIGENCIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CES_USUARIO">
+      <EntityTypeMapping TypeName="Model.CES_USUARIO">
+        <MappingFragment StoreEntitySet="CES_USUARIO">
+          <ScalarProperty Name="USU_ID" ColumnName="USU_ID" />
+          <ScalarProperty Name="USU_NOMBRE_USUARIO" ColumnName="USU_NOMBRE_USUARIO" />
+          <ScalarProperty Name="USU_CLAVE" ColumnName="USU_CLAVE" />
+          <ScalarProperty Name="USU_VIGENCIA" ColumnName="USU_VIGENCIA" />
+          <ScalarProperty Name="PER_RUT" ColumnName="PER_RUT" />
+          <ScalarProperty Name="TIPO_USUARIO_ID" ColumnName="TIPO_USUARIO_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

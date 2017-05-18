@@ -1,0 +1,6 @@
+D:\DUOC\DUOC 2017-1\Portafolio\PROYECTO\cesfam .NET\Cesfam\BibliotecaMedicos\bin\Debug\BibliotecaMedicos.dll.config
+D:\DUOC\DUOC 2017-1\Portafolio\PROYECTO\cesfam .NET\Cesfam\BibliotecaMedicos\bin\Debug\BibliotecaMedicos.dll
+D:\DUOC\DUOC 2017-1\Portafolio\PROYECTO\cesfam .NET\Cesfam\BibliotecaMedicos\bin\Debug\BibliotecaMedicos.pdb
+D:\DUOC\DUOC 2017-1\Portafolio\PROYECTO\cesfam .NET\Cesfam\BibliotecaMedicos\obj\Debug\BibliotecaMedicos.csprojResolveAssemblyReference.cache
+D:\DUOC\DUOC 2017-1\Portafolio\PROYECTO\cesfam .NET\Cesfam\BibliotecaMedicos\obj\Debug\BibliotecaMedicos.dll
+D:\DUOC\DUOC 2017-1\Portafolio\PROYECTO\cesfam .NET\Cesfam\BibliotecaMedicos\obj\Debug\BibliotecaMedicos.pdb
