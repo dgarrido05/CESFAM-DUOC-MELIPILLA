@@ -76,6 +76,18 @@ public class usuarioDAO {
         return em.createNamedQuery("CesTipoUsuario.findAll").getResultList();
     }
     
+    public List<CesLaboratorio> listarLaboratorio() throws Exception{
+        return em.createNamedQuery("CesLaboratorio.findAll").getResultList();
+    }
+    
+    public List<CesTipoMedicamento> listarTipoMed() throws Exception{
+        return em.createNamedQuery("CesTipoMedicamento.findAll").getResultList();
+    }
+    
+    public List<CesTipoAdminMed> listarTipoAdmin() throws Exception{
+        return em.createNamedQuery("CesTipoAdminMed.findAll").getResultList();
+    }
+    
     /**********************MODIFICAR (UPDATE)***************************************/
     public boolean modificarUsuario(String id, String nombreUsu, String clave){
         boolean status = false;
