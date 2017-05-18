@@ -61,3 +61,7 @@ En --> CESFAM-DUOC-MELIPILLA/java/Controlador/llenarTiposMedicamento.java
 Agregado en la vista formulario de agregar medicamento 
 
 En --> CESFAM-DUOC-MELIPILLA/ingresarMedicamento.jsp
+
+Agregado Generar Informe de Stock en .NET y carpetas relacionadas
+
+En --> CESFAM-DUOC-MELIPILLA/.NET/cesfam/Medico/
