@@ -39,3 +39,11 @@ PARA JAVA:
 
 Ahora las tablas muestran solo usuarios vigentes y la vista de pacientes solo muestra pacientes y no usuarios en
 --> CESFAM-DUOC-MELIPILLA/java/DAO/usuarioDAO.java
+
+-----------------------------------------------
+
+18/05/2017
+
+Cambio en los eliminar de java en la capa de modelo, ahora no borran si no que dejan en estado 'n' (no vigente)
+
+En -> CESFAM-DUOC-MELIPILLA/java/DAO/ usuarioDAO.java
