@@ -155,22 +155,33 @@ public class usuarioDAO {
     
     /**********************ELIMINAR (DELETE)***************************************/ 
     public void eliminarPaciente(int rut){
+        try{
         CesPersona p = em.find(CesPersona.class, rut);
-        em.remove(p);
+        p.setPerVigencia('n');
+        em.persist(p);
+        }catch(Exception e){
+        
+        }
     }
     
     public void eliminarUsuario(String id){
-        CesUsuario p = em.find(CesUsuario.class, id);
-        em.getTransaction().begin();
-        em.remove(p);
-        em.getTransaction().commit();
+        try{
+        CesUsuario u = em.find(CesUsuario.class, id);
+        u.setUsuVigencia('n');
+        em.persist(u);
+        }catch(Exception e){
+        
+        }
     }
     
     public void eliminarMedicamento(int id){
-        CesMedicamento p = em.find(CesMedicamento.class, id);
-        em.getTransaction().begin();
-        em.remove(p);
-        em.getTransaction().commit();
+        try{
+        CesMedicamento m = em.find(CesMedicamento.class, id);
+        m.setMedVigencia('n');
+        em.persist(m);
+        }catch(Exception e){
+        
+        }
     }
     
     /**********************BUSCAR***************************************/ 
