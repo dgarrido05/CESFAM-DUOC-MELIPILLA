@@ -1,0 +1,223 @@
+/*
+**Tabla recetas.
+Tabla prescripciones.
+Procedimientos.
+Modelar e implementar el modelo de datos del incremento esperado.
+El informe de vencidos debe realizarse en una tabla independiente que se debe llenar con un SP.
+Poblar tabla CES_ESTADO_MEDICAMENTO.
+En fila Estado_id en medicamentos. si el estado es vencido, envase roto, si vence en un mes... se descuentan del Stock. (PROCEDIMIENTO)
+¿Crear un tabla reservas?
+==================================================
+==================================================
+
+
+--==============POBLAR ESTADO MEDICAMENTO=========================
+insert into CES_ESTADO_MEDICAMENTO values (seq_estado_medicamentos.nextval, 'Activo', 's');
+insert into CES_ESTADO_MEDICAMENTO values (seq_estado_medicamentos.nextval, 'Vencido', 's');
+insert into CES_ESTADO_MEDICAMENTO values (seq_estado_medicamentos.nextval, 'Mal estado', 's');
+insert into CES_ESTADO_MEDICAMENTO values (seq_estado_medicamentos.nextval, 'Envase roto', 's');
+
+--==============POBLAR TIPO MEDICAMENTO=========================
+insert into CES_TIPO_MEDICAMENTO values (seq_tipo_medicamentos.nextval, 'Antiinflamatorio', 's');
+insert into CES_TIPO_MEDICAMENTO values (seq_tipo_medicamentos.nextval, 'Antibiótico', 's');
+insert into CES_TIPO_MEDICAMENTO values (seq_tipo_medicamentos.nextval, 'Analgésico', 's');
+insert into CES_TIPO_MEDICAMENTO values (seq_tipo_medicamentos.nextval, 'Antidepresivo', 's');
+
+--==============POBLAR TIPO ADMIN MEDICAMENTO=========================
+insert into CES_TIPO_ADMIN_MED values (seq_adm_medicamentos.nextval, 'Oral', 's');
+insert into CES_TIPO_ADMIN_MED values (seq_adm_medicamentos.nextval, 'Intramuscular', 's');
+insert into CES_TIPO_ADMIN_MED values (seq_adm_medicamentos.nextval, 'Intravenosa', 's');
+insert into CES_TIPO_ADMIN_MED values (seq_adm_medicamentos.nextval, 'Tópica', 's');
+
+--==============POBLAR LABORATORIO=========================
+CREATE SEQUENCE "SEQ_LABORATORIO";
+insert into CES_LABORATORIO values (seq_laboratorio.nextval, 'Laboratorio CHILE', 's');
+insert into CES_LABORATORIO values (seq_laboratorio.nextval, 'Laboratorios SAVAL', 's');
+insert into CES_LABORATORIO values (seq_laboratorio.nextval, 'Laboratorio BIOSANO', 's');
+insert into CES_LABORATORIO values (seq_laboratorio.nextval, 'Laboratorio BAYER', 's');
+insert into CES_LABORATORIO values (seq_laboratorio.nextval, 'Laboratorio ANDRÓMACO', 's');
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:
+
+==================TABLA MEDICAMENTOS===================================
+CREATE table "CES_MEDICAMENTOS" (
+    "MEDS_ID"                  NUMBER(7,0) NOT NULL,
+    "MEDS_NOMBRE_COMERCIAL"    VARCHAR2(50) NOT NULL,
+    "MEDS_NOMBRE_COMPONENTE"   VARCHAR2(50) NOT NULL,
+    "MEDS_FORMA_FARMACEUTICA"  VARCHAR2(20) NOT NULL,
+    "MEDS_CONTENIDO"           VARCHAR2(20) NOT NULL,
+    "MEDS_CONCENTRACION"       VARCHAR2(20) NOT NULL,
+    "MEDS_COMENTARIOS"         VARCHAR2(200) NOT NULL,
+    "MEDS_STOCK"               NUMBER(7,0) NOT NULL,
+    "MEDS_VIGENCIA"            CHAR(1) NOT NULL,
+    "MEDS_TIPO_MEDICAMENTO_ID" NUMBER(2,0) NOT NULL,
+    "MEDS_TIPO_ADMIN_ID"       NUMBER(2,0) NOT NULL,
+    "MEDS_LABORATORIO_ID"      NUMBER(3,0) NOT NULL,
+
+    constraint  "CES_MEDICAMENTOS_PK" primary key ("MEDS_ID")
+)
+/
+
+CREATE sequence "CES_MEDICAMENTOS_SEQ" 
+/
+
+CREATE trigger "BI_CES_MEDICAMENTOS"  
+  before insert on "CES_MEDICAMENTOS"              
+  for each row 
+begin  
+  if :NEW."MEDS_ID" is null then
+    select "CES_MEDICAMENTOS_SEQ".nextval into :NEW."MEDS_ID" from dual;
+  end if;
+end;
+/   
+
+ALTER TABLE "CES_MEDICAMENTOS" ADD CONSTRAINT "CES_MEDICAMENTOS_FK" 
+FOREIGN KEY ("MEDS_TIPO_MEDICAMENTO_ID")
+REFERENCES "CES_TIPO_MEDICAMENTO" ("TIPO_MED_ID")
+
+/
+ALTER TABLE "CES_MEDICAMENTOS" ADD CONSTRAINT "CES_MEDICAMENTOS_FK2" 
+FOREIGN KEY ("MEDS_TIPO_ADMIN_ID")
+REFERENCES "CES_TIPO_ADMIN_MED" ("TIPO_ADM_ID")
+
+/
+ALTER TABLE "CES_MEDICAMENTOS" ADD CONSTRAINT "CES_MEDICAMENTOS_FK3" 
+FOREIGN KEY ("MEDS_LABORATORIO_ID")
+REFERENCES "CES_LABORATORIO" ("LAB_ID")
+
+
+==============TABLA DETALLE MEDICAMENTOS============================================
+CREATE table "CES_MEDICAMENTO_DETALLE" (
+    "DETM_ID"                NUMBER(8,0) NOT NULL,
+    "DETM_FECHA_ELABORACION" DATE NOT NULL,
+    "DETM_FECHA_VENCIMIENTO" DATE NOT NULL,
+    "DETM_CANTIDAD"          NUMBER(3,0) NOT NULL,
+    "DETM_FECHA_INGRESO"     DATE NOT NULL,
+    "DETM_VIGENCIA"          CHAR(1) NOT NULL,
+    "DETM_ESTADO_ID"         NUMBER(2,0) NOT NULL,
+    "DETM_MEDICAMENTOS_ID"   NUMBER(7,0) NOT NULL,
+    "DETM_COMENTARIOS"       VARCHAR2(200) NOT NULL,
+    constraint  "CES_MEDICAMENTO_DETALLE_PK" primary key ("DETM_ID")
+)
+/
+
+CREATE sequence "CES_MEDICAMENTO_DETALLE_SEQ" 
+/
+
+CREATE trigger "BI_CES_MEDICAMENTO_DETALLE"  
+  before insert on "CES_MEDICAMENTO_DETALLE"              
+  for each row 
+begin  
+  if :NEW."DETM_ID" is null then
+    select "CES_MEDICAMENTO_DETALLE_SEQ".nextval into :NEW."DETM_ID" from dual;
+  end if;
+end;
+/   
+
+ALTER TABLE "CES_MEDICAMENTO_DETALLE" ADD CONSTRAINT "CES_MEDICAMENTO_DETALLE_FK" 
+FOREIGN KEY ("DETM_ESTADO_ID")
+REFERENCES "CES_ESTADO_MEDICAMENTO" ("EST_ID")
+
+/
+ALTER TABLE "CES_MEDICAMENTO_DETALLE" ADD CONSTRAINT "CES_MEDICAMENTO_DETALLE_FK2" 
+FOREIGN KEY ("DETM_MEDICAMENTOS_ID")
+REFERENCES "CES_MEDICAMENTOS" ("MEDS_ID")
+
+--=============TABLA RECETA========================================================
+CREATE table "CES_RECETA" (
+    "REC_ID"          NUMBER(7,0) NOT NULL,
+    "REC_ID_PACIENTE" NUMBER(8,0) NOT NULL,
+    "REC_ID_MEDICO"   NUMBER(8,0) NOT NULL,
+    "REC_FECHA"       DATE NOT NULL,
+    "REC_VIGENCIA"    CHAR(1) NOT NULL,
+    constraint  "CES_RECETA_PK" primary key ("REC_ID")
+)
+/
+
+CREATE sequence "CES_RECETA_SEQ" 
+/
+
+CREATE trigger "BI_CES_RECETA"  
+  before insert on "CES_RECETA"              
+  for each row 
+begin  
+  if :NEW."REC_ID" is null then
+    select "CES_RECETA_SEQ".nextval into :NEW."REC_ID" from dual;
+  end if;
+end;
+/   
+
+ALTER TABLE "CES_RECETA" ADD CONSTRAINT "CES_RECETA_FK" 
+FOREIGN KEY ("REC_ID_PACIENTE")
+REFERENCES "CES_PERSONA" ("PER_RUT")
+
+/
+ALTER TABLE "CES_RECETA" ADD CONSTRAINT "CES_RECETA_FK2" 
+FOREIGN KEY ("REC_ID_MEDICO")
+REFERENCES "CES_PERSONA" ("PER_RUT")
+
+
+--===============TABLA DETALLE RECETA===============================
+CREATE table "CES_RECETA_DETALLE" (
+    "DET_ID"             NUMBER(7,0) NOT NULL,
+    "DET_ID_MEDICAMENTO" NUMBER(7,0) NOT NULL,
+    "DET_ID_RECETA"      NUMBER(7,0) NOT NULL,
+    "DET_CANTIDAD_ADMIN" VARCHAR2(20) NOT NULL,
+    "DET_DIAS_ADMIN"     NUMBER(10) NOT NULL,
+    "DET_HORAS_DOSIS"    VARCHAR2(10) NOT NULL,
+    "DET_RESERVA"        CHAR(1) NOT NULL,
+    "DET_VIGENCIA"       CHAR(1) NOT NULL,
+    constraint  "CES_RECETA_DETALLE_PK" primary key ("DET_ID")
+)
+/
+
+CREATE sequence "CES_RECETA_DETALLE_SEQ" 
+/
+
+CREATE trigger "BI_CES_RECETA_DETALLE"  
+  before insert on "CES_RECETA_DETALLE"              
+  for each row 
+begin  
+  if :NEW."DET_ID" is null then
+    select "CES_RECETA_DETALLE_SEQ".nextval into :NEW."DET_ID" from dual;
+  end if;
+end;
+/   
+
+ALTER TABLE "CES_RECETA_DETALLE" ADD CONSTRAINT "CES_RECETA_DETALLE_FK" 
+FOREIGN KEY ("DET_ID_MEDICAMENTO")
+REFERENCES "CES_MEDICAMENTOS" ("MEDS_ID")
+
+/
+ALTER TABLE "CES_RECETA_DETALLE" ADD CONSTRAINT "CES_RECETA_DETALLE_FK2" 
+FOREIGN KEY ("DET_ID_RECETA")
+REFERENCES "CES_RECETA" ("REC_ID")
+
+==============TABLA RESERVA==================================
+CREATE table "CES_RESERVA" (
+    "RES_ID"       NUMBER(7,0),
+    "RES_CANTIDAD" NUMBER(3,0),
+    "RES_VIGENCIA" CHAR(1),
+    "RES_MEDS_ID"  NUMBER(7,0),
+    constraint  "CES_RESERVA_PK" primary key ("RES_ID")
+)
+/
+
+CREATE sequence "CES_RESERVA_SEQ" 
+/
+
+CREATE trigger "BI_CES_RESERVA"  
+  before insert on "CES_RESERVA"              
+  for each row 
+begin  
+  if :NEW."RES_ID" is null then
+    select "CES_RESERVA_SEQ".nextval into :NEW."RES_ID" from dual;
+  end if;
+end;
+/   
+
+ALTER TABLE "CES_RESERVA" ADD CONSTRAINT "CES_RESERVA_FK" 
+FOREIGN KEY ("RES_MEDS_ID")
+REFERENCES "CES_MEDICAMENTOS" ("MEDS_ID")
+*/
