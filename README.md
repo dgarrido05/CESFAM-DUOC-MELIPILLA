@@ -65,5 +65,6 @@ En --> CESFAM-DUOC-MELIPILLA/ingresarMedicamento.jsp
 Agregado Generar Informe de Stock en .NET y carpetas relacionadas
 
 En --> CESFAM-DUOC-MELIPILLA/.NET/cesfam/Medico/
-----------------------------------------------
+-------------------------------------------
+-- hola --
 base de datos actualizada
