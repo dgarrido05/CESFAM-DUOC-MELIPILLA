@@ -196,10 +196,10 @@ REFERENCES "CES_RECETA" ("REC_ID")
 
 ==============TABLA RESERVA==================================
 CREATE table "CES_RESERVA" (
-    "RES_ID"       NUMBER(7,0),
-    "RES_CANTIDAD" NUMBER(3,0),
-    "RES_VIGENCIA" CHAR(1),
-    "RES_MEDS_ID"  NUMBER(7,0),
+    "RES_ID"       NUMBER(7,0) NOT NULL,
+    "RES_CANTIDAD" NUMBER(3,0) NOT NULL,
+    "RES_VIGENCIA" CHAR(1) NOT NULL,
+    "RES_MEDS_ID"  NUMBER(7,0) NOT NULL,
     constraint  "CES_RESERVA_PK" primary key ("RES_ID")
 )
 /
