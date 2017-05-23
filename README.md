@@ -66,3 +66,8 @@ Agregado Generar Informe de Stock en .NET y carpetas relacionadas
 
 ------------------------------
 base de datos actualizada
+
+--------------------------------
+Se agregó "Not Null" a la tabla reserva.
+
+Se le cambió la ubicación de (../CESFAM-DUOC-MELIPILLA) a (../CESFAM-DUOC-MELIPILLA/base datos)
